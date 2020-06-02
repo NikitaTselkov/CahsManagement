@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CahsManagementUI.Styles">
+
+    <Color x:Key="blue">#041A80</Color>
+    <SolidColorBrush  x:Key="Blue" Color="{StaticResource blue}" />
+
+    <Color x:Key="white">#ffffff</Color>
+    <SolidColorBrush  x:Key="White" Color="{StaticResource white}" />
+
+    <Color x:Key="gray">#6E8094</Color>
+    <SolidColorBrush  x:Key="Gray" Color="{StaticResource gray}" />
+
+    <Color x:Key="lightGray">#D3D3D3</Color>
+    <SolidColorBrush  x:Key="LightGray" Color="{StaticResource lightGray}" />
+
+    <Color x:Key="darkGray">#515F72</Color>
+    <SolidColorBrush  x:Key="DarkGray" Color="{StaticResource darkGray}" />
+
+    <Color x:Key="lightBlue">#DAEFFF</Color>
+    <SolidColorBrush  x:Key="LightBlue" Color="{StaticResource lightBlue}" />
+
+</ResourceDictionary>

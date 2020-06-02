@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModels.Navigation;
 
 namespace CahsManagementUI
 {
@@ -23,6 +25,16 @@ namespace CahsManagementUI
         public MainWindow()
         {
             InitializeComponent();
+
+            NavigationSetup();
+        }
+
+        void NavigationSetup()
+        {
+            Messenger.Default.Register<NavigateArgs>(this, (x) =>
+            {
+                MainFrame.Navigate(new Uri(x.Url, UriKind.Relative));
+            });
         }
     }
 }

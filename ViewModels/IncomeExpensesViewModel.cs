@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using GalaSoft.MvvmLight.Command;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,20 @@ namespace ViewModels
         /// <summary>
         /// Список расходов / доходов.
         /// </summary>
-        public List<IncomeExpenses> IncomeExpenses { get; set; } 
+        public List<IncomeExpenses> IncomeExpenses { get; set; }
 
         /// <summary>
-        /// Конструктор создания строки расходов / доходов.
+        /// Главный Конструктор.
         /// </summary>
         public IncomeExpensesViewModel()
+        {
+            CreateIncomeExpenses();
+        }
+
+        /// <summary>
+        /// Метод создания строки расходов / доходов.
+        /// </summary>
+        public void CreateIncomeExpenses()
         {
             IncomeExpenses = new List<IncomeExpenses>();
             IncomeExpenses = Load<List<IncomeExpenses>>(PATH_INCOME_EXPENSES);

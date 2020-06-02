@@ -17,6 +17,8 @@ namespace ViewModels.Navigation
 
             SimpleIoc.Default.Register<IncomeExpensesViewModel>();
 
+            SimpleIoc.Default.Register<MainPageViewModel>();
+
         }
 
         public IncomeExpensesViewModel MainIncomeExpenses
@@ -24,6 +26,14 @@ namespace ViewModels.Navigation
             get
             {
                 return ServiceLocator.Current.GetInstance<IncomeExpensesViewModel>();
+            }
+        }
+        
+        public MainPageViewModel MainPage
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MainPageViewModel>();
             }
         }
 

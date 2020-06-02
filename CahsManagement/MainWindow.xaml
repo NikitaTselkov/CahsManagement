@@ -5,9 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CahsManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        MinHeight="800"
+        MinWidth="1200"
+        DataContext="{Binding MainPage, Source={StaticResource Locator}}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="319*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Background="{StaticResource Blue}">
+
+            <Viewbox>
+                <Grid Width="100" Margin="10 5">
+                    <Image Source="{StaticResource Logo}" />
+                </Grid>
+            </Viewbox>
+
+            <DockPanel HorizontalAlignment="Left" Margin="30 0">
+                <RadioButton Content="Главная" Style="{StaticResource HeaderButton}" Command="{Binding GoToMainPageCommand}" />
+                <RadioButton Content="Доходы" Style="{StaticResource HeaderButton}" Command="{Binding GoToIncomePageCommand}" />
+                <RadioButton Content="Расходы" Style="{StaticResource HeaderButton}" Command="{Binding GoToExpensesPageCommand}" />
+            </DockPanel>
+
+        </DockPanel>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" />
 
     </Grid>
 </Window>
