@@ -48,7 +48,7 @@ namespace ConsoleTest
 
                         int Id = Convert.ToInt32(Console.ReadLine());
 
-                        incomeExpensesView.Remove(Id);
+                        incomeExpensesView.Remove();
 
                         Console.Clear();
                         break;

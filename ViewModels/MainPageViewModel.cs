@@ -20,7 +20,7 @@ namespace ViewModels
 
 
         /// <summary>
-        /// Метод отправки в IncomePage.
+        /// Метод отправки в IncomePage (Доходы).
         /// </summary>
         public void GoToIncomePageMethod()
         {
@@ -28,7 +28,7 @@ namespace ViewModels
         }
 
         /// <summary>
-        /// Метод отправки в ExpensesPage.
+        /// Метод отправки в ExpensesPage (Расходы).
         /// </summary>
         public void GoToExpensesPageMethod()
         {

@@ -22,10 +22,9 @@ namespace Models
         public Dictionary<DayOfWeek, int> Value { get; set; } = new Dictionary<DayOfWeek, int>();
 
         /// <summary>
-        /// Id.
+        /// Отмечен ли элемент.
         /// </summary>
-        public int Id { get; set; }
-
+        public bool Check { get; set; }
 
 
         public override string ToString()
@@ -34,7 +33,7 @@ namespace Models
 
             var RandomValue = rnd.Next(1, 6);
 
-            return String.Format("Id: {0}, Title: {1}, DayOfWeek: {2}, {3}", Id, Title, Value.First(f => f.Key == (DayOfWeek)RandomValue).Key, Value.First(f => f.Key == (DayOfWeek)RandomValue).Value);
+            return String.Format("Title: {0}, DayOfWeek: {1}, {2}, Check: {3}", Title, Value.First(f => f.Key == (DayOfWeek)RandomValue).Key, Value.First(f => f.Key == (DayOfWeek)RandomValue).Value, Check);
         }
     }
 }

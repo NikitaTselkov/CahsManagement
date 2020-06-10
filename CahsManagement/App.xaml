@@ -11,7 +11,9 @@
 
         <ResourceDictionary>
 
-            <BitmapImage x:Name="LOGO" x:Key="Logo" UriSource="/Icons/TableLogo.png" />
+            <BitmapImage x:Key="Logo" UriSource="/Icons/TableLogo.png" />
+            <BitmapImage x:Key="LeftButton" UriSource="/Icons/LeftButton.png" />
+            <BitmapImage x:Key="RightButton" UriSource="/Icons/RightButton.png" />
 
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
             
@@ -19,6 +21,7 @@
 
                 <ResourceDictionary Source="Styles/Colors.xaml" />
                 <ResourceDictionary Source="Styles/MainWindowStyles.xaml" />
+                <ResourceDictionary Source="Styles/IncomeExpensesStyles.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
             

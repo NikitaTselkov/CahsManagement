@@ -105,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\IncomeExpensesStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\MainWindowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +152,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\TableLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\LeftButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\RightButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
