@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-
+using System.Data.SqlClient;
 
 namespace ViewModels.Navigation
 {

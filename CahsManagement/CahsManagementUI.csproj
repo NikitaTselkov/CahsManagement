@@ -76,7 +76,6 @@
     <Compile Include="Pages\IncomePage.xaml.cs">
       <DependentUpon>IncomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RelayCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

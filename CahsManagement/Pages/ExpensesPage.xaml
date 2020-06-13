@@ -6,9 +6,188 @@
       xmlns:local="clr-namespace:CahsManagement.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ExpensesPage">
+      Title="ExpensesPage"
+      Name="_page"
+      DataContext="{Binding MainExpenses, Source={StaticResource Locator}}">
 
-    <Grid Background="Bisque">
-        
+    <Grid Background="{StaticResource LightBlue}">
+
+        <Grid Margin="50" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="319*"/>
+            </Grid.RowDefinitions>
+
+            <Viewbox Grid.RowSpan="2" VerticalAlignment="Top">
+                <Grid MaxHeight="500">
+
+                    <Grid Height="70" VerticalAlignment="Top" Panel.ZIndex="1">
+
+                        <TextBlock
+                            FontSize="30"
+                            Foreground="{StaticResource LightBlue}"
+                            HorizontalAlignment="Center"
+                            Margin="0 10">
+                            
+                            <Run Text="{Binding CurrentDay, Mode=OneWay}" />
+                            <Run Text="{Binding CurrentMonth, Mode=OneWay}" />
+                            <Run Text="{Binding CurrentYear, Mode=OneWay}" />
+
+                        </TextBlock>
+
+                        <Button Style="{StaticResource SelectDateButton}" Command="{Binding RightButtonCommand}" CommandParameter="1" HorizontalAlignment="Right">
+                            <Image Source="{StaticResource RightButton}" />
+                        </Button>
+
+                        <Button Style="{StaticResource SelectDateButton}" Command="{Binding LeftButtonCommand}" CommandParameter="1" HorizontalAlignment="Left">
+                            <Image Source="{StaticResource LeftButton}" />
+                        </Button>
+
+                    </Grid>
+
+                    <DataGrid
+                                SelectionUnit="Cell"
+                                ItemsSource="{Binding Expenses}"
+                                AutoGenerateColumns="False"
+                                VerticalScrollBarVisibility="Hidden"
+                                SelectionMode="Single"
+                                CanUserSortColumns="False" 
+                                CellStyle="{StaticResource CellStyle}"
+                                CanUserAddRows="False"
+                                BorderThickness="0"
+                                AlternatingRowBackground="{StaticResource LightGray}"
+                                IsSynchronizedWithCurrentItem="True"
+                                UseLayoutRounding="False"
+                                GridLinesVisibility="None"
+                                RowDetailsVisibilityMode="Visible">
+
+                        <DataGrid.Resources>
+
+                            <DataGridCheckBoxColumn
+                                x:Key="ThatPeskyColumn"
+                                Visibility="{Binding DataContext.IsRemove, Source={x:Reference _page}}"
+                                Width="40"
+                                Binding="{Binding Path=Check, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                HeaderStyle="{StaticResource MainTableHeader}"
+                                CanUserReorder="False"
+                                CellStyle="{StaticResource DataGridCheckBoxStyle}"
+                            />
+                        </DataGrid.Resources>
+
+                        <DataGrid.Columns>
+
+                            <StaticResource ResourceKey="ThatPeskyColumn" />
+                            <DataGridTextColumn Header="Статья расходов" Binding="{Binding Path=Title}" Width="400" HeaderStyle="{StaticResource MainTableHeader}" CanUserReorder="False" Foreground="{StaticResource DarkGray}" />
+
+                            <DataGridTextColumn Header="Понедельник" Binding="{Binding Path=Value[Monday], StringFormat={}{0}Р}"  CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Monday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Вторник" Binding="{Binding Path=Value[Tuesday], StringFormat={}{0}Р}" CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Tuesday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Среда" Binding="{Binding Path=Value[Wednesday], StringFormat={}{0}Р}" CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Wednesday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Четверг" Binding="{Binding Path=Value[Thursday], StringFormat={}{0}Р}" CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Thursday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Пятница" Binding="{Binding Path=Value[Friday], StringFormat={}{0}Р}" CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Friday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Суббота" Binding="{Binding Path=Value[Saturday], StringFormat={}{0}Р}" CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Saturday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Восресенье" Binding="{Binding Path=Value[Sunday], StringFormat={}{0}Р}" CanUserReorder="False">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style BasedOn="{StaticResource SecondTableHeader}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Page, Mode=FindAncestor}, Path=DataContext.CurrentDayOfWeek}" Value="Sunday">
+                                                <Setter Property="DocumentViewerBase.Foreground" Value="{StaticResource DarkGray}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                        </DataGrid.Columns>
+
+                        <DataGrid.RowStyle>
+                            <Style>
+                                <Setter Property="DocumentViewerBase.Margin" Value="-10 0 0 0" />
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                    </DataGrid>
+
+                    <DockPanel
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="0 -40" >
+
+                        <Button Style="{StaticResource TableButton}" Content="Add"  Command="{Binding AddRowCommand}" />
+                        <Button Style="{StaticResource TableButton}" Content="Remove" Command="{Binding RemoveRowCommand}" />
+                        <Button Style="{StaticResource TableButton}" Content="Save" Command="{Binding SaveRowCommand}"  />
+
+                    </DockPanel>
+
+                </Grid>
+            </Viewbox>
+
+        </Grid>
+
     </Grid>
 </Page>

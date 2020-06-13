@@ -7,18 +7,18 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            IncomeExpensesViewModel incomeExpensesView = new IncomeExpensesViewModel();
+           // IncomeExpensesViewModel incomeExpensesView = new IncomeExpensesViewModel();
 
             Console.WriteLine("Current------------------");
 
-            Console.WriteLine(incomeExpensesView.CurrentIncomeExpenses);
+          //  Console.WriteLine(incomeExpensesView.CurrentIncomeExpenses);
 
             Console.WriteLine("-------------------------");
 
-            foreach (var item in incomeExpensesView.IncomeExpenses)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in incomeExpensesView.IncomeExpenses)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
             var IsStop = false;
@@ -39,7 +39,7 @@ namespace ConsoleTest
                 {
                     case 1:
 
-                        incomeExpensesView.Add();
+                       // incomeExpensesView.Add();
 
                         Console.Clear();
                         break;
@@ -48,7 +48,7 @@ namespace ConsoleTest
 
                         int Id = Convert.ToInt32(Console.ReadLine());
 
-                        incomeExpensesView.Remove();
+                        //incomeExpensesView.Remove();
 
                         Console.Clear();
                         break;
@@ -65,18 +65,18 @@ namespace ConsoleTest
                         break;
                 }
 
-                incomeExpensesView = new IncomeExpensesViewModel();
+                //incomeExpensesView = new IncomeExpensesViewModel();
 
                 Console.WriteLine("Current------------------");
 
-                Console.WriteLine(incomeExpensesView.CurrentIncomeExpenses);
+              //  Console.WriteLine(incomeExpensesView.CurrentIncomeExpenses);
 
                 Console.WriteLine("-------------------------");
 
-                foreach (var item in incomeExpensesView.IncomeExpenses)
-                {
-                    Console.WriteLine(item);
-                }
+                //foreach (var item in incomeExpensesView.IncomeExpenses)
+                //{
+                //    Console.WriteLine(item);
+                //}
             }
 
         }

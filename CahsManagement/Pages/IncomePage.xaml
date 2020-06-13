@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="IncomePage"
       Name="_page"
-      DataContext="{Binding MainIncomeExpenses, Source={StaticResource Locator}}">
+      DataContext="{Binding MainIncome, Source={StaticResource Locator}}">
 
     <Grid Background="{StaticResource LightBlue}">
 
@@ -35,11 +35,11 @@
 
                         </TextBlock>
 
-                        <Button Style="{StaticResource SelectDateButton}" Command="{Binding RightButtonCommand}" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource SelectDateButton}" Command="{Binding RightButtonCommand}" CommandParameter="0" HorizontalAlignment="Right">
                             <Image Source="{StaticResource RightButton}" />
                         </Button>
 
-                        <Button Style="{StaticResource SelectDateButton}" Command="{Binding LeftButtonCommand}" HorizontalAlignment="Left">
+                        <Button Style="{StaticResource SelectDateButton}" Command="{Binding LeftButtonCommand}" CommandParameter="0" HorizontalAlignment="Left">
                             <Image Source="{StaticResource LeftButton}" />
                         </Button>
 
@@ -47,7 +47,7 @@
 
                     <DataGrid
                                 SelectionUnit="Cell"
-                                ItemsSource="{Binding IncomeExpenses}"
+                                ItemsSource="{Binding Incomes}"
                                 AutoGenerateColumns="False"
                                 VerticalScrollBarVisibility="Hidden"
                                 SelectionMode="Single"
@@ -77,7 +77,7 @@
                         <DataGrid.Columns>
 
                             <StaticResource ResourceKey="ThatPeskyColumn" />
-                            <DataGridTextColumn Header="Статья расходов" Binding="{Binding Path=Title}" Width="400" HeaderStyle="{StaticResource MainTableHeader}" CanUserReorder="False" Foreground="{StaticResource DarkGray}" />
+                            <DataGridTextColumn Header="Статья доходов" Binding="{Binding Path=Title}" Width="400" HeaderStyle="{StaticResource MainTableHeader}" CanUserReorder="False" Foreground="{StaticResource DarkGray}" />
 
                             <DataGridTextColumn Header="Понедельник" Binding="{Binding Path=Value[Monday], StringFormat={}{0}Р}"  CanUserReorder="False">
                                 <DataGridTextColumn.HeaderStyle>

@@ -20,7 +20,6 @@ namespace ViewModels.Navigation
 
         public string Url { get; }
 
-
         public override string ToString()
         {
             return $"Url: {Url}.";

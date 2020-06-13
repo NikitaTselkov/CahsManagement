@@ -22,7 +22,7 @@ namespace ViewModels
         /// <summary>
         /// Метод отправки в IncomePage (Доходы).
         /// </summary>
-        public void GoToIncomePageMethod()
+        public void GoToIncomePageMethod(object param)
         {
             Navigate("Pages/IncomePage.xaml");
         }
@@ -30,7 +30,7 @@ namespace ViewModels
         /// <summary>
         /// Метод отправки в ExpensesPage (Расходы).
         /// </summary>
-        public void GoToExpensesPageMethod()
+        public void GoToExpensesPageMethod(object param)
         {
             Navigate("Pages/ExpensesPage.xaml");
         }
@@ -38,7 +38,7 @@ namespace ViewModels
         /// <summary>
         /// Метод отправки в MainPage.
         /// </summary>
-        public void GoToMainPageMethod()
+        public void GoToMainPageMethod(object param)
         {
             Navigate("Pages/MainPage.xaml");
         }

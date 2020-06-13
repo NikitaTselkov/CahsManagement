@@ -26,8 +26,8 @@
 
             <DockPanel HorizontalAlignment="Left" Margin="30 0">
                 <RadioButton Content="Главная" Style="{StaticResource HeaderButton}" Command="{Binding GoToMainPageCommand}" />
-                <RadioButton Content="Доходы" Style="{StaticResource HeaderButton}" Command="{Binding GoToExpensesPageCommand}" />
-                <RadioButton Content="Расходы" Style="{StaticResource HeaderButton}" Command="{Binding GoToIncomePageCommand}" />
+                <RadioButton Content="Доходы" Style="{StaticResource HeaderButton}" Command="{Binding GoToIncomePageCommand}" CommandParameter="1" />
+                <RadioButton Content="Расходы" Style="{StaticResource HeaderButton}" Command="{Binding GoToExpensesPageCommand}" CommandParameter="0" />
             </DockPanel>
 
         </DockPanel>

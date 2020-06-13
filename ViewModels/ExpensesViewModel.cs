@@ -1,20 +1,15 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Models;
+﻿using Models;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using ViewModels.Navigation;
-using Calendar = System.Globalization.Calendar;
 
 namespace ViewModels
 {
-    public class IncomeExpensesViewModel : NavigateViewModel
+    public class ExpensesViewModel : NavigateViewModel
     {
 
         #region Дата
@@ -36,9 +31,9 @@ namespace ViewModels
                 {
                     return CurrentDate.Day;
                 }
-                else 
+                else
                 {
-                    return currentDay;                   
+                    return currentDay;
                 }
             }
 
@@ -96,14 +91,14 @@ namespace ViewModels
                     }
 
                     return result;
-                }           
-                else 
+                }
+                else
                 {
                     return currentMonth;
                 }
 
             }
-            set 
+            set
             {
                 currentMonth = value;
                 RaisePropertyChanged("");
@@ -129,18 +124,18 @@ namespace ViewModels
         /// <summary>
         /// Метод перемещающий на неделью в перед.
         /// </summary>
-        public void RightButtonMethod()
+        public void RightButtonMethod(object param)
         {
             int days = DateTime.DaysInMonth(CurrentYear, (int)CurrentMonth);
             int week = 7;
             int months = 12;
-            string Path = CURRENT_PATH_INCOME_EXPENSES;
-            int indexPath = PathsIncomeExpenses.IndexOf(Path);
+            string Path = CURRENT_PATH_EXPENSES;
+            int indexPath = PathsExpenses.IndexOf(Path);
 
 
-            if (PathsIncomeExpenses.Count > indexPath + 1)
+            if (PathsExpenses.Count > indexPath + 1)
             {
-                CURRENT_PATH_INCOME_EXPENSES = PathsIncomeExpenses[indexPath + 1];
+                CURRENT_PATH_EXPENSES = PathsExpenses[indexPath + 1];
 
                 CurrentDay += week;
 
@@ -159,24 +154,23 @@ namespace ViewModels
                     CurrentDay -= days;
                 }
 
-                IncomeExpenses = GetData<IncomeExpenses>(CURRENT_PATH_INCOME_EXPENSES); // Обновляет таблицу
-                RaisePropertyChanged("");
+                Refresh();
             }
         }
 
         /// <summary>
         /// Метод перемещающий на неделью назад.
         /// </summary>
-        public void LeftButtonMethod()
+        public void LeftButtonMethod(object param)
         {
             int month = (int)CurrentMonth;
             int week = 7;
-            string Path = CURRENT_PATH_INCOME_EXPENSES;
-            int indexPath = PathsIncomeExpenses.IndexOf(Path);
+            string Path = CURRENT_PATH_EXPENSES;
+            int indexPath = PathsExpenses.IndexOf(Path);
 
-            if (PathsIncomeExpenses.Count > indexPath && indexPath != 0)
+            if (PathsExpenses.Count > indexPath && indexPath > 0)
             {
-                CURRENT_PATH_INCOME_EXPENSES = PathsIncomeExpenses[indexPath - 1];
+                CURRENT_PATH_EXPENSES = PathsExpenses[indexPath - 1];
 
                 CurrentDay -= week;
 
@@ -199,8 +193,7 @@ namespace ViewModels
                     CurrentDay += days;
                 }
 
-                IncomeExpenses = GetData<IncomeExpenses>(CURRENT_PATH_INCOME_EXPENSES);
-                RaisePropertyChanged("");
+                Refresh();
             }
         }
 
@@ -209,31 +202,31 @@ namespace ViewModels
         #region Пути
 
         /// <summary>
-        /// Путь к текущей строке расходов / доходов.
+        /// Путь к текущей строке расходов.
         /// </summary>
-        private string CURRENT_PATH_INCOME_EXPENSES { get; set; }
+        private string CURRENT_PATH_EXPENSES { get; set; }
 
         /// <summary>
-        /// Путь к списку всех путей к строкам расходов / доходов.
+        /// Путь к списку всех путей к строкам расходов.
         /// </summary>
-        private const string PATH_ALL_INCOME_EXPENSES = "AllPaths.json";
+        private const string PATH_ALL_EXPENSES = "AllPathsExpenses.json";
 
         /// <summary>
         /// Путь к значению IsNewWeek.
         /// </summary>
-        private const string PATH_NEW_WEEK = "NewWeek.json";
+        private const string PATH_NEW_WEEK = "NewWeekExpenses.json";
 
         /// <summary>
-        /// Список всех путей к строкам расходов / доходов.
+        /// Список всех путей к строкам расходов.
         /// </summary>
-        private List<string> PathsIncomeExpenses { get; set; }
+        private List<string> PathsExpenses { get; set; }
 
         #endregion
 
         /// <summary>
-        /// Текущая строка расходов / доходов.
+        /// Текущая строка расходов.
         /// </summary>
-        public IncomeExpenses CurrentIncomeExpenses { get; set; }
+        public IncomeExpenses CurrentExpenses { get; set; }
 
         /// <summary>
         /// Нужно ли показывать CheckBox удаления.
@@ -241,9 +234,9 @@ namespace ViewModels
         public Visibility IsRemove { get; set; } = Visibility.Collapsed;
 
         /// <summary>
-        /// Список расходов / доходов.
+        /// Список расходов.
         /// </summary>
-        public List<IncomeExpenses> IncomeExpenses { get; set; }
+        public List<IncomeExpenses> Expenses { get; set; }
 
         public RelayCommand AddRowCommand { get; set; }
         public RelayCommand SaveRowCommand { get; set; }
@@ -252,7 +245,7 @@ namespace ViewModels
         /// <summary>
         /// Главный Конструктор.
         /// </summary>
-        public IncomeExpensesViewModel()
+        public ExpensesViewModel()
         {
             AddRowCommand = new RelayCommand(Add);
             SaveRowCommand = new RelayCommand(Save);
@@ -261,8 +254,7 @@ namespace ViewModels
             RightButtonCommand = new RelayCommand(RightButtonMethod);
             LeftButtonCommand = new RelayCommand(LeftButtonMethod);
 
-
-            PathsIncomeExpenses = GetData<string>(PATH_ALL_INCOME_EXPENSES);
+            PathsExpenses = GetData<string>(PATH_ALL_EXPENSES);
 
             GetCurrentPath();
 
@@ -288,7 +280,7 @@ namespace ViewModels
                 Save(PATH_NEW_WEEK, IsNewWeek);
             }
 
-            IncomeExpenses = GetData<IncomeExpenses>(CURRENT_PATH_INCOME_EXPENSES);
+            Expenses = GetData<IncomeExpenses>(CURRENT_PATH_EXPENSES);
         }
 
         /// <summary>
@@ -296,14 +288,15 @@ namespace ViewModels
         /// </summary>
         private void CreateNewTable()
         {
-            Never:
-            var PathName = Guid.NewGuid().ToString() + ".json";
+        Never:
 
-            if (PathsIncomeExpenses.FirstOrDefault(s => s.Equals(PathName)) == null)
+            var Path = Guid.NewGuid().ToString() + ".json";
+
+            if (PathsExpenses.FirstOrDefault(s => s.Equals(Path)) == null)
             {
-                PathsIncomeExpenses.Add(PathName);
+                PathsExpenses.Add(Path);
 
-                Save(PATH_ALL_INCOME_EXPENSES, PathsIncomeExpenses);
+                Save(PATH_ALL_EXPENSES, PathsExpenses);
             }
             else
             {
@@ -316,7 +309,7 @@ namespace ViewModels
         /// </summary>
         private void Refresh()
         {
-            IncomeExpenses = GetData<IncomeExpenses>(CURRENT_PATH_INCOME_EXPENSES);
+            Expenses = GetData<IncomeExpenses>(CURRENT_PATH_EXPENSES);
             RaisePropertyChanged("");
         }
 
@@ -325,14 +318,14 @@ namespace ViewModels
         /// </summary>
         private void GetCurrentPath()
         {
-            var path = PathsIncomeExpenses.LastOrDefault();
+            var path = PathsExpenses.LastOrDefault();
             if (path == null)
             {
-                CURRENT_PATH_INCOME_EXPENSES = "IncomeExpenses.json";
+                CURRENT_PATH_EXPENSES = "IncomeExpenses.json";
             }
-            else 
+            else
             {
-                CURRENT_PATH_INCOME_EXPENSES = path;
+                CURRENT_PATH_EXPENSES = path;
             }
         }
 
@@ -364,37 +357,39 @@ namespace ViewModels
         }
 
         /// <summary>
-        /// Метод добавления строки расходов / доходов.
+        /// Метод добавления строки расходов.
         /// </summary>
-        private void Add()
+        private void Add(object param)
         {
-            CurrentIncomeExpenses = new IncomeExpenses();
+            CurrentExpenses = new IncomeExpenses();
 
-            var MaxId = IncomeExpenses.Count;
+            var MaxId = Expenses.Count;
 
-            CurrentIncomeExpenses.Title = "NewTitle" + (MaxId + 1);
+            CurrentExpenses.Title = "NewTitle" + (MaxId + 1);
 
-            IncomeExpenses.Add(CurrentIncomeExpenses);
+            Expenses.Add(CurrentExpenses);
 
-            Save(CURRENT_PATH_INCOME_EXPENSES, IncomeExpenses);
+            Save(CURRENT_PATH_EXPENSES, Expenses);
 
             Refresh();
         }
 
         /// <summary>
-        /// Метод удаления строки расходов / доходов.
+        /// Метод удаления строки расходов.
         /// </summary>
-        private void Remove()
+        private void Remove(object param)
         {
             if (IsRemove == Visibility.Collapsed)
             {
                 IsRemove = Visibility.Visible;
+
+                Save(CURRENT_PATH_EXPENSES, Expenses);
             }
             else
             {
                 var result = new List<IncomeExpenses>();
 
-                foreach (var item in IncomeExpenses)
+                foreach (var item in Expenses)
                 {
                     if (item.Check == false)
                     {
@@ -403,7 +398,7 @@ namespace ViewModels
                     }
                 }
 
-                Save(CURRENT_PATH_INCOME_EXPENSES, result);
+                Save(CURRENT_PATH_EXPENSES, result);
 
                 IsRemove = Visibility.Collapsed;
             }
@@ -414,9 +409,9 @@ namespace ViewModels
         /// <summary>
         /// Метод сохранения изменений.
         /// </summary>
-        private void Save()
+        private void Save(object param)
         {
-            Save(CURRENT_PATH_INCOME_EXPENSES, IncomeExpenses);
+            Save(CURRENT_PATH_EXPENSES, Expenses);
         }
 
     }

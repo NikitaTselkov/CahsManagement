@@ -64,7 +64,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpensesViewModel.cs" />
     <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="SaveAndLoad.cs" />
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -75,7 +77,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IncomeExpensesViewModel.cs" />
+    <Compile Include="IncomeViewModel.cs" />
     <Compile Include="Navigation\NavigateArgs.cs" />
     <Compile Include="Navigation\NavigateViewModel.cs" />
     <Compile Include="Navigation\ViewModelLocator.cs" />

@@ -15,20 +15,30 @@ namespace ViewModels.Navigation
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<IncomeExpensesViewModel>();
+            SimpleIoc.Default.Register<IncomeViewModel>();
 
             SimpleIoc.Default.Register<MainPageViewModel>();
 
+            SimpleIoc.Default.Register<ExpensesViewModel>();
+
         }
 
-        public IncomeExpensesViewModel MainIncomeExpenses
+        public IncomeViewModel MainIncome
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<IncomeExpensesViewModel>();
+                return ServiceLocator.Current.GetInstance<IncomeViewModel>();
             }
         }
-        
+
+        public ExpensesViewModel MainExpenses
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ExpensesViewModel>();
+            }
+        }
+
         public MainPageViewModel MainPage
         {
             get
